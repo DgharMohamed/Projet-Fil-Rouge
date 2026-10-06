@@ -1,4 +1,4 @@
-# Prompt — Recreate This Project
+# Prompt — Create This Project
 
 
 Build a project called **"Projet fil rouge"** — a simple Admin Dashboard to manage job offers and domains. No login, everything in French.
