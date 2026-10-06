@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "nom": "Informatique"
+    },
+    {
+        "id": 2,
+        "nom": "Marketing"
+    },
+    {
+        "id": 3,
+        "nom": "Finance"
+    },
+    {
+        "id": 4,
+        "nom": "Ressources humaines"
+    },
+    {
+        "id": 5,
+        "nom": "Commerce"
+    },
+    {
+        "id": 6,
+        "nom": "AI"
+    }
+]
