@@ -22,5 +22,9 @@
     {
         "id": 6,
         "nom": "AI"
+    },
+    {
+        "id": 7,
+        "nom": "Teaching"
     }
 ]
