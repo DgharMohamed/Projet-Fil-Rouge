@@ -12,7 +12,7 @@
         }
 
         public function listerOffres(){
-            $id=$this->LireIdRequete();
+            $id=isset($_GET["id"]) && $_GET["id"]!=="" ? (int)$_GET["id"] : null;
 
             if($id!==null){
                 $offre=$this->offreDao->TrouverParId($id);
@@ -33,9 +33,9 @@
         }
 
         public function ajouterOffre(){
-            $input=$this->LireCorps();
+            $input=json_decode(file_get_contents("php://input"),true);
 
-            if($input===null){
+            if(!is_array($input)){
                 http_response_code(400);
                 return ["message"=>"Corps de requête JSON invalide"];
             }
@@ -56,7 +56,7 @@
         }
 
         public function modifierOffre(){
-            $id=$this->LireIdRequete();
+            $id=isset($_GET["id"]) && $_GET["id"]!=="" ? (int)$_GET["id"] : null;
 
             if($id===null){
                 http_response_code(400);
@@ -70,9 +70,9 @@
                 return ["message"=>"Offre introuvable"];
             }
 
-            $input=$this->LireCorps();
+            $input=json_decode(file_get_contents("php://input"),true);
 
-            if($input===null){
+            if(!is_array($input)){
                 http_response_code(400);
                 return ["message"=>"Corps de requête JSON invalide"];
             }
@@ -110,7 +110,7 @@
         }
 
         public function supprimerOffre(){
-            $id=$this->LireIdRequete();
+            $id=isset($_GET["id"]) && $_GET["id"]!=="" ? (int)$_GET["id"] : null;
 
             if($id===null){
                 http_response_code(400);

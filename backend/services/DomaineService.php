@@ -12,7 +12,7 @@
         }
 
         public function listerDomaines(){
-            $id=$this->LireIdRequete();
+            $id=isset($_GET["id"]) && $_GET["id"]!=="" ? (int)$_GET["id"] : null;
 
             if($id!==null){
                 $domaine=$this->domaineDao->TrouverParId($id);
@@ -33,9 +33,9 @@
         }
 
         public function ajouterDomaine(){
-            $input=$this->LireCorps();
+            $input=json_decode(file_get_contents("php://input"),true);
 
-            if($input===null){
+            if(!is_array($input)){
                 http_response_code(400);
                 return ["message"=>"Corps de requête JSON invalide"];
             }
@@ -59,7 +59,7 @@
         }
 
         public function modifierDomaine(){
-            $id=$this->LireIdRequete();
+            $id=isset($_GET["id"]) && $_GET["id"]!=="" ? (int)$_GET["id"] : null;
 
             if($id===null){
                 http_response_code(400);
@@ -73,9 +73,9 @@
                 return ["message"=>"Domaine introuvable"];
             }
 
-            $input=$this->LireCorps();
+            $input=json_decode(file_get_contents("php://input"),true);
 
-            if($input===null){
+            if(!is_array($input)){
                 http_response_code(400);
                 return ["message"=>"Corps de requête JSON invalide"];
             }
@@ -98,7 +98,7 @@
         }
 
         public function supprimerDomaine(){
-            $id=$this->LireIdRequete();
+            $id=isset($_GET["id"]) && $_GET["id"]!=="" ? (int)$_GET["id"] : null;
 
             if($id===null){
                 http_response_code(400);
