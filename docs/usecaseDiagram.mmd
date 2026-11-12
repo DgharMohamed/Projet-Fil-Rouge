@@ -1,0 +1,45 @@
+usecase-beta
+    direction LR
+    accTitle: Administration - Cas d'utilisation
+    accDescr: Administrateur gère les offres, les domaines et visualise les statistiques du dashboard
+
+    actor Admin("Administrateur")
+
+    systemBoundary offres["Gestion des Offres"]
+        UC1("Consulter la liste des offres")
+        UC2("Créer une offre")
+        UC3("Modifier une offre")
+        UC4("Supprimer une offre")
+        UC5("Rechercher / Filtrer les offres")
+        UC6("Trier les offres")
+    end
+
+    systemBoundary domaines["Gestion des Domaines"]
+        UC7("Consulter la liste des domaines")
+        UC8("Créer un domaine")
+        UC9("Modifier un domaine")
+        UC10("Supprimer un domaine")
+    end
+
+    systemBoundary dashboard["Dashboard"]
+        UC11("Visualiser les statistiques")
+    end
+
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC7
+    Admin --> UC8
+    Admin --> UC9
+    Admin --> UC10
+    Admin --> UC11
+
+    UC2 ..> : include UC8
+    UC3 ..> : include UC8
+    UC4 ..> : extend UC10
+    UC9 ..> : extend UC10
+    UC11 ..> : include UC1
+    UC11 ..> : include UC7

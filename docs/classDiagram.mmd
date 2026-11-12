@@ -1,0 +1,94 @@
+classDiagram
+    class Domaine {
+        -int id
+        -string nom
+        +__construct(int id, string nom)
+        +int getId()
+        +void setId(int id)
+        +string getNom()
+        +void setNom(string nom)
+        +array toArray()
+        +array jsonSerialize()
+        +Domaine fromArray(array data)
+    }
+
+    class Offre {
+        -int id
+        -string titre
+        -string description
+        -float salaire
+        -int domaineId
+        +__construct(int id, string titre, string description, int|float|string salaire, int domaineId)
+        +int getId()
+        +void setId(int id)
+        +string getTitre()
+        +void setTitre(string titre)
+        +string getDescription()
+        +void setDescription(string description)
+        +float getSalaire()
+        +void setSalaire(int|float|string salaire)
+        +int getDomaineId()
+        +void setDomaineId(int domaineId)
+        +array toArray()
+        +array jsonSerialize()
+        +Offre fromArray(array data)
+    }
+
+    class GestionOffreAPI {
+        +void handleGET()
+        +void handlePOST()
+        +void handlePUT()
+        +void handleDELETE()
+        -Offre buildOffre(array data, string domainesFile)
+        -void assertDomaineExists(string domainesFile, int domaineId)
+    }
+
+    class GestionDomaineAPI {
+        +void handleGET()
+        +void handlePOST()
+        +void handlePUT()
+        +void handleDELETE()
+    }
+
+    class Helpers {
+        +never respond(mixed data, int status)
+        +never fail(string message, int status)
+        +array body()
+        +int|null queryId()
+        +array loadDb(string file)
+        +void saveDb(string file, array rows)
+        +int nextId(array rows)
+        +array|null findRow(array rows, int id)
+        +void assertScalar(array data, array keys)
+        +string strField(array data, string key)
+    }
+
+    class FrontendApp {
+        -object state
+        +Promise reload()
+        +void render()
+        +void renderStats()
+        +void renderOffres()
+        +void renderDomaines()
+        +void openOffreForm(object|null offre)
+        +void openDomaineForm(object|null domaine)
+        +Promise api(string url, object options)
+        +void toast(string message, string type)
+    }
+
+    GestionOffreAPI --> Domaine
+    GestionOffreAPI --> Offre
+    GestionOffreAPI --> Helpers
+
+    GestionDomaineAPI --> Domaine
+    GestionDomaineAPI --> Offre
+    GestionDomaineAPI --> Helpers
+
+    FrontendApp --> GestionOffreAPI : HTTP/JSON
+    FrontendApp --> GestionDomaineAPI : HTTP/JSON
+
+    Offre --> Domaine : domaine_id (FK)
+
+    note for Offre "salaire: numeric, >= 0"
+    note for Domaine "nom: required, trimmed"
+    note for Offre "titre: required, trimmed"
