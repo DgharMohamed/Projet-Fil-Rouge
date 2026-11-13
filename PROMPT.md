@@ -28,21 +28,32 @@ comme demandé par le professeur.
 > 3. **Services (business logic tier)** — `backend/services/`, one service per
 >    entity, each extends an abstract `BaseService`
 >    - Validates input, enforces business rules, sets HTTP status codes
-> 4. **API (single entry point)** — `backend/api/api.php` routes every request
->    by HTTP method and a `?entity=domaines|offres` parameter
+> 4. **API (one simple file per entity)** — `backend/api/apiDomaine.php` and
+>    `backend/api/apiOffre.php`; each file requires its service, sets the JSON
+>    content type, then checks the HTTP method with simple `if` statements
+>    and calls the matching service method:
 >
-> The frontend talks ONLY to the API — it never touches the JSON files directly.
+>    ```php
+>    if($_SERVER['REQUEST_METHOD'] == 'GET'){
+>        echo json_encode($service->listerDomaines());
+>    }
+>    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+>        echo json_encode($service->ajouterDomaine());
+>    }
+>    ```
+>
+> The frontend talks ONLY to the API files — it never touches the JSON files directly.
 >
 > ### CRUD (mandatory)
-> Implement **full CRUD** for both entities via REST:
+> Implement **full CRUD** for both entities:
 >
 > | Method | URL | Action |
 > |--------|-----|--------|
-> | GET    | `api.php?entity=offres`      | list all |
-> | GET    | `api.php?entity=offres&id=2` | get one  |
-> | POST   | `api.php?entity=offres`      | create   |
-> | PUT    | `api.php?entity=offres&id=2` | update   |
-> | DELETE | `api.php?entity=offres&id=2` | delete   |
+> | GET    | `apiOffre.php`      | list all |
+> | GET    | `apiOffre.php?id=2` | get one  |
+> | POST   | `apiOffre.php`      | create   |
+> | PUT    | `apiOffre.php?id=2` | update   |
+> | DELETE | `apiOffre.php?id=2` | delete   |
 >
 > - Return correct status codes: 200, 201, 400, 404, 409, 422
 > - `PUT` for Offre is partial (only the sent fields are updated)
@@ -59,7 +70,8 @@ comme demandé par le professeur.
 > ```
 > index.html
 > assets/js/app.js
-> backend/api/api.php
+> backend/api/apiDomaine.php
+> backend/api/apiOffre.php
 > backend/classes/Domaine.php
 > backend/classes/Offre.php
 > backend/dao/DomaineDAO.php
@@ -88,4 +100,5 @@ comme demandé par le professeur.
 
 - ✅ **Architecture 3 tiers** : modèles → DAO → services → API
 - ✅ **Patron DAO** : une seule couche accède aux fichiers JSON
+- ✅ **API simple** : un fichier par entité, des `if` sur la méthode HTTP
 - ✅ **CRUD complet** sur les deux entités avec les codes HTTP corrects

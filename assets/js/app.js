@@ -1,5 +1,5 @@
-const apiOffre = "backend/api/api.php?entity=offres";
-const apiDomaine = "backend/api/api.php?entity=domaines";
+const apiOffre = "backend/api/apiOffre.php";
+const apiDomaine = "backend/api/apiDomaine.php";
 
 const $ = (id) => document.getElementById(id);
 
@@ -316,7 +316,7 @@ document.addEventListener("click", (e) => {
     const offre = state.offres.find((o) => o.id == delOffre.dataset.delOffre);
     if (!offre) return;
     askConfirm("Supprimer cette offre ?", `"${offre.titre}" sera définitivement supprimée.`, async () => {
-      await api(`${apiOffre}&id=${offre.id}`, { method: "DELETE" });
+      await api(`${apiOffre}?id=${offre.id}`, { method: "DELETE" });
       toast("Offre supprimée");
       await reload();
     });
@@ -333,7 +333,7 @@ document.addEventListener("click", (e) => {
     const domaine = state.domaines.find((d) => d.id == delDomaine.dataset.delDomaine);
     if (!domaine) return;
     askConfirm("Supprimer ce domaine ?", `"${domaine.nom}" sera définitivement supprimé.`, async () => {
-      await api(`${apiDomaine}&id=${domaine.id}`, { method: "DELETE" });
+      await api(`${apiDomaine}?id=${domaine.id}`, { method: "DELETE" });
       toast("Domaine supprimé");
       await reload();
     });
@@ -359,7 +359,7 @@ $("offreForm").onsubmit = async (e) => {
 
   try {
     if (state.editOffre) {
-      await api(`${apiOffre}&id=${state.editOffre.id}`, { method: "PUT", body: payload });
+      await api(`${apiOffre}?id=${state.editOffre.id}`, { method: "PUT", body: payload });
       toast("Offre mise à jour");
     } else {
       await api(apiOffre, { method: "POST", body: payload });
@@ -385,7 +385,7 @@ $("domaineForm").onsubmit = async (e) => {
 
   try {
     if (state.editDomaine) {
-      await api(`${apiDomaine}&id=${state.editDomaine.id}`, { method: "PUT", body: payload });
+      await api(`${apiDomaine}?id=${state.editDomaine.id}`, { method: "PUT", body: payload });
       toast("Domaine mis à jour");
     } else {
       await api(apiDomaine, { method: "POST", body: payload });

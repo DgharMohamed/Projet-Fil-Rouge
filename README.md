@@ -26,7 +26,7 @@ Réalisé en **Session 3** avec une **architecture 3 tiers** et le patron de con
 ┌──────────────────────────────────────────────┐
 │ Présentation : index.html + assets/js/app.js │
 ├──────────────────────────────────────────────┤
-│ Contrôleur : backend/api/api.php (routeur)   │
+│ Contrôleurs : apiDomaine.php · apiOffre.php  │
 ├──────────────────────────────────────────────┤
 │ Logique métier : backend/services/           │
 │   DomaineService · OffreService              │
@@ -39,7 +39,7 @@ Réalisé en **Session 3** avec une **architecture 3 tiers** et le patron de con
 └──────────────────────────────────────────────┘
 ```
 
-- Le **frontend** ne parle qu'à l'API, jamais aux fichiers JSON directement.
+- Le **frontend** ne parle qu'aux fichiers API, jamais aux JSON directement.
 - Le **DAO** est le seul à lire/écrire les fichiers JSON.
 - Le **service** valide les données et applique les règles métier.
 
@@ -49,7 +49,9 @@ Réalisé en **Session 3** avec une **architecture 3 tiers** et le patron de con
 index.html                  → interface (présentation)
 assets/js/app.js            → logique du frontend
 backend/
-├── api/api.php             → point d'entrée unique (routeur REST)
+├── api/                    → un fichier simple par entité
+│   ├── apiDomaine.php      → CRUD du Domaine
+│   └── apiOffre.php        → CRUD de l'Offre
 ├── classes/                → modèles POO (1 classe = 1 fichier)
 │   ├── Domaine.php
 │   └── Offre.php
@@ -69,17 +71,20 @@ PROMPT.md                   → prompt IA utilisé pour générer ce projet
 
 ## API — CRUD
 
-Point d'entrée unique : `backend/api/api.php?entity=domaines` ou `?entity=offres`
+Un fichier simple par entité : `backend/api/apiDomaine.php` et `backend/api/apiOffre.php`.
+Chaque fichier vérifie la méthode HTTP (`GET`, `POST`, `PUT`, `DELETE`) et appelle la méthode du service correspondante.
+
+**Domaines :**
 
 | Méthode | URL | Action | Code |
 |---------|-----|--------|------|
-| GET     | `?entity=domaines`          | Lister tous les domaines | 200 |
-| GET     | `?entity=domaines&id=1`     | Afficher un domaine      | 200 / 404 |
-| POST    | `?entity=domaines`          | Créer un domaine         | 201 |
-| PUT     | `?entity=domaines&id=1`     | Modifier un domaine      | 200 / 422 |
-| DELETE  | `?entity=domaines&id=1`     | Supprimer un domaine     | 200 / 409 |
+| GET     | `apiDomaine.php`        | Lister tous les domaines | 200 |
+| GET     | `apiDomaine.php?id=1`   | Afficher un domaine      | 200 / 404 |
+| POST    | `apiDomaine.php`        | Créer un domaine         | 201 |
+| PUT     | `apiDomaine.php?id=1`   | Modifier un domaine      | 200 / 422 |
+| DELETE  | `apiDomaine.php?id=1`   | Supprimer un domaine     | 200 / 409 |
 
-Mêmes routes pour les offres : `?entity=offres` (le `PUT` des offres est **partiel** : seuls les champs envoyés sont modifiés).
+**Offres :** mêmes routes sur `apiOffre.php` (le `PUT` des offres est **partiel** : seuls les champs envoyés sont modifiés).
 
 ## Entités et validation
 
