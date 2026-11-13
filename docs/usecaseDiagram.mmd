@@ -1,45 +1,47 @@
+---
+title: Cas d'utilisation - Gestion des offres d'emploi
+---
 usecase-beta
-    direction LR
-    accTitle: Administration - Cas d'utilisation
-    accDescr: Administrateur gère les offres, les domaines et visualise les statistiques du dashboard
+direction LR
 
-    actor Admin("Administrateur")
+accTitle: Administration des offres et des domaines
+accDescr {
+    Un administrateur gère les offres et les domaines via une interface web.
+    Créer ou modifier une offre exige de choisir un domaine existant.
+    Un domaine rattaché à des offres ne peut pas être supprimé.
+}
 
-    systemBoundary offres["Gestion des Offres"]
-        UC1("Consulter la liste des offres")
-        UC2("Créer une offre")
-        UC3("Modifier une offre")
-        UC4("Supprimer une offre")
-        UC5("Rechercher / Filtrer les offres")
-        UC6("Trier les offres")
-    end
+actor Admin("Administrateur")
 
-    systemBoundary domaines["Gestion des Domaines"]
-        UC7("Consulter la liste des domaines")
-        UC8("Créer un domaine")
-        UC9("Modifier un domaine")
-        UC10("Supprimer un domaine")
-    end
+systemBoundary offres["Gestion des Offres"]
+    UC1("Consulter, rechercher et trier les offres")
+    UC2("Créer une offre")
+    UC3("Modifier une offre")
+    UC4("Supprimer une offre")
+end
 
-    systemBoundary dashboard["Dashboard"]
-        UC11("Visualiser les statistiques")
-    end
+systemBoundary domaines["Gestion des Domaines"]
+    UC5("Consulter la liste des domaines")
+    UC6("Créer un domaine")
+    UC7("Modifier un domaine")
+    UC8("Supprimer un domaine")
+end
 
-    Admin --> UC1
-    Admin --> UC2
-    Admin --> UC3
-    Admin --> UC4
-    Admin --> UC5
-    Admin --> UC6
-    Admin --> UC7
-    Admin --> UC8
-    Admin --> UC9
-    Admin --> UC10
-    Admin --> UC11
+systemBoundary dashboard["Dashboard"]
+    UC9("Visualiser les statistiques")
+end
 
-    UC2 ..> : include UC8
-    UC3 ..> : include UC8
-    UC4 ..> : extend UC10
-    UC9 ..> : extend UC10
-    UC11 ..> : include UC1
-    UC11 ..> : include UC7
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+Admin --> UC9
+
+UC2 ..> : include UC5
+UC3 ..> : include UC5
+
+note for UC8 "Impossible si des offres sont rattachées - code 409"

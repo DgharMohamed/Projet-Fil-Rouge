@@ -1,6 +1,6 @@
 <?php
 
-class Offre implements JsonSerializable
+class Offre
 {
     private int $id;
     private string $titre;
@@ -105,11 +105,6 @@ class Offre implements JsonSerializable
             "salaire" => $this->getSalaire(),
             "domaine_id" => $this->getDomaineId(),
         ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
     }
 
     public static function fromArray(array $data): self

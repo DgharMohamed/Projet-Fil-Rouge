@@ -1,6 +1,6 @@
 <?php
 
-class Domaine implements JsonSerializable
+class Domaine
 {
     private int $id;
     private string $nom;
@@ -47,11 +47,6 @@ class Domaine implements JsonSerializable
             "id" => $this->getId(),
             "nom" => $this->getNom(),
         ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
     }
 
     public static function fromArray(array $data): self

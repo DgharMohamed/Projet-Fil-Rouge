@@ -19,7 +19,7 @@ comme demandé par le professeur.
 >    - `Offre` : `id`, `titre` (required), `description` (optional),
 >      `salaire` (number >= 0), `domaine_id` (must reference an existing domaine)
 >    - Each entity has getters/setters with validation (French error messages),
->      plus `toArray()`, `jsonSerialize()`, `fromArray()`
+>      plus `toArray()` and `fromArray()`
 > 2. **DAO (data access tier)** — `backend/dao/`, one DAO per entity
 >    - The DAO is the ONLY layer that reads/writes the JSON data files
 >    - Methods: `AfficherTous()`, `TrouverParId($id)`, `ProchainId()`,

@@ -37,7 +37,7 @@
 
         public function Ajouter(Offre $offre): void{
             $offres=$this->Charger();
-            $offres[]=$offre->jsonSerialize();
+            $offres[]=$offre->toArray();
             $this->Enregistrer($offres);
         }
 
@@ -47,7 +47,7 @@
             if($index===false){
                 throw new Error("Offre introuvable");
             }
-            $offres[$index]=$offre->jsonSerialize();
+            $offres[$index]=$offre->toArray();
             $this->Enregistrer($offres);
         }
 

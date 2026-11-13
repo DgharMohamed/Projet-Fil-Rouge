@@ -27,7 +27,7 @@
 
         public function Ajouter(Domaine $domaine): void{
             $domaines=$this->Charger();
-            $domaines[]=$domaine->jsonSerialize();
+            $domaines[]=$domaine->toArray();
             $this->Enregistrer($domaines);
         }
 
@@ -37,7 +37,7 @@
             if($index===false){
                 throw new Error("Domaine introuvable");
             }
-            $domaines[$index]=$domaine->jsonSerialize();
+            $domaines[$index]=$domaine->toArray();
             $this->Enregistrer($domaines);
         }
 
