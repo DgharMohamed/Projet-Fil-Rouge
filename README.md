@@ -65,7 +65,21 @@ backend/
 └── data/
     ├── Domaines.json
     └── Offres.json
-docs/                       → diagrammes de classes et cas d'utilisation
+docs/                       → sources Mermaid et diagrammes complets
+Presentation/               → support de soutenance (Marp, PDF, captures)
+  ├── Presentation.md       → source des diapositives
+  ├── presentation.pdf      → export PDF
+  ├── slides/               → rendu PNG des diapositives
+  ├── images/               → diagrammes et captures utilisés
+  └── capture.js            → script de capture des interfaces
+Rapport/                    → rapport de projet (une section par dossier)
+  ├── rapport.md            → rapport principal
+  ├── SCRUM/                → méthode Scrum
+  ├── 2TUP/                 → processus 2TUP
+  ├── design_thinking/      → Design Thinking
+  ├── Branch_Technique/     → choix technologiques
+  ├── PROJET-TECHNIQUE/     → prototype CRUD
+  └── architecture_du_system/ → architecture MVC et 3 tiers
 PROMPT.md                   → prompt IA utilisé pour générer ce projet
 ```
 
