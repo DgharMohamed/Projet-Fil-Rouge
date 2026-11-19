@@ -198,10 +198,10 @@ Le dépôt permet d'identifier les choix techniques suivants :
 
 L'application est organisée en trois tiers, eux-mêmes subdivisés en quatre ensembles de fichiers :
 
-1. **Présentation** (`index.html` et `assets/js/app.js`) : interface, onglets Offres et Domaines, modales, recherche, tri et statistiques. Le fichier `app.js` centralise les appels HTTP dans une fonction `api()` et un état `state`.
-2. **API** (`backend/api/`) : `apiDomaine.php` et `apiOffre.php` aiguillent la requête selon `REQUEST_METHOD` et appellent la méthode correspondante du service.
-3. **Logique métier** (`backend/services/`) : `DomaineService` et `OffreService` valident les données, appliquent les règles métier et positionnent les codes HTTP (200, 201, 400, 404, 409, 422).
-4. **Accès aux données** (`backend/dao/` et `backend/classes/`) : `DomaineDAO` et `OffreDAO` lisent et écrivent les fichiers JSON ; `Domaine` et `Offre` sont les modèles POO.
+1. **Présentation** (`Projet/index.html` et `Projet/assets/js/app.js`) : interface, onglets Offres et Domaines, modales, recherche, tri et statistiques. Le fichier `app.js` centralise les appels HTTP dans une fonction `api()` et un état `state`.
+2. **API** (`Projet/backend/api/`) : `apiDomaine.php` et `apiOffre.php` aiguillent la requête selon `REQUEST_METHOD` et appellent la méthode correspondante du service.
+3. **Logique métier** (`Projet/backend/services/`) : `DomaineService` et `OffreService` valident les données, appliquent les règles métier et positionnent les codes HTTP (200, 201, 400, 404, 409, 422).
+4. **Accès aux données** (`Projet/backend/dao/` et `Projet/backend/classes/`) : `DomaineDAO` et `OffreDAO` lisent et écrivent les fichiers JSON ; `Domaine` et `Offre` sont les modèles POO.
 
 Le frontend et le backend sont séparés : toutes les pages passent par l'API, sans accès direct aux fichiers de données. Les services ne manipulent que des objets métier ; seuls les DAO connaissent le format JSON.
 

@@ -408,12 +408,12 @@ style: |
 
 ## Structure technique
 
-- **Frontend** · `index.html` + `assets/js/app.js`
-- **API** · `backend/api/` — `apiDomaine.php`, `apiOffre.php`
-- **Services** · `backend/services/` — `BaseService`, `DomaineService`, `OffreService`
-- **DAO** · `backend/dao/` — `DomaineDAO`, `OffreDAO`
-- **Modèles** · `backend/classes/` — `Domaine`, `Offre`
-- **Données** · `backend/data/` — `Domaines.json`, `Offres.json`
+- **Frontend** · `Projet/index.html` + `Projet/assets/js/app.js`
+- **API** · `Projet/backend/api/` — `apiDomaine.php`, `apiOffre.php`
+- **Services** · `Projet/backend/services/` — `BaseService`, `DomaineService`, `OffreService`
+- **DAO** · `Projet/backend/dao/` — `DomaineDAO`, `OffreDAO`
+- **Modèles** · `Projet/backend/classes/` — `Domaine`, `Offre`
+- **Données** · `Projet/backend/data/` — `Domaines.json`, `Offres.json`
 
 ---
 
@@ -422,7 +422,7 @@ style: |
 
 ![Diagramme de classes — couches Présentation et API](images/ClassDiagram_presentation_api.png)
 
-- **Présentation** · `index.html` + `app.js`
+- **Présentation** · `Projet/index.html` + `app.js`
 - **API** · un contrôleur par entité
 - **Transport** · HTTP / JSON et codes 200 / 201 / 400 / 404 / 409 / 422
 

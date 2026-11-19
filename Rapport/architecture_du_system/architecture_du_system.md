@@ -39,11 +39,11 @@ Le projet permet de consulter, créer, modifier et supprimer des domaines et des
 ```mermaid
 flowchart LR
 U[Utilisateur] <-->|interface| UI[Navigateur<br/>index.html et app.js]
-UI -->|GET / POST / PUT / DELETE<br/>JSON| API[API PHP<br/>backend/api/]
-API --> S[Services<br/>backend/services/]
-S --> DAO[DAO<br/>backend/dao/]
+UI -->|GET / POST / PUT / DELETE<br/>JSON| API[API PHP<br/>Projet/backend/api/]
+API --> S[Services<br/>Projet/backend/services/]
+S --> DAO[DAO<br/>Projet/backend/dao/]
 DAO -->|crée des objets| M[Modèles<br/>Domaine · Offre]
-DAO <-->|lecture / écriture| F[(backend/data<br/>Domaines.json · Offres.json)]
+DAO <-->|lecture / écriture| F[(Projet/backend/data<br/>Domaines.json · Offres.json)]
 API -->|réponse JSON| UI
 ```
 _Figure 3 — Architecture commune aux versions du projet ; les noms des classes varient selon la version._

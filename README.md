@@ -15,7 +15,7 @@ Réalisé en **Session 3** avec une **architecture 3 tiers** et le patron de con
 
 ## Stack technique
 
-- PHP 8.1+ (sans framework) — lancé avec `php -S localhost:8000`
+- PHP 8.1+ (sans framework) — lancé avec `cd Projet && php -S localhost:8000`
 - JavaScript vanilla + HTML (sans framework)
 - Tailwind CSS via CDN
 - Base de données : fichiers JSON (aucun SGBD)
@@ -28,13 +28,13 @@ Réalisé en **Session 3** avec une **architecture 3 tiers** et le patron de con
 ├──────────────────────────────────────────────┤
 │ Contrôleurs : apiDomaine.php · apiOffre.php  │
 ├──────────────────────────────────────────────┤
-│ Logique métier : backend/services/           │
+│ Logique métier : Projet/backend/services/    │
 │   DomaineService · OffreService              │
 ├──────────────────────────────────────────────┤
-│ Accès aux données (DAO) : backend/dao/       │
+│ Accès aux données (DAO) : Projet/backend/dao/│
 │   DomaineDAO · OffreDAO  →  data/*.json      │
 ├──────────────────────────────────────────────┤
-│ Modèles (POO) : backend/classes/             │
+│ Modèles (POO) : Projet/backend/classes/      │
 │   Domaine · Offre                            │
 └──────────────────────────────────────────────┘
 ```
@@ -46,25 +46,26 @@ Réalisé en **Session 3** avec une **architecture 3 tiers** et le patron de con
 ## Structure du projet
 
 ```
-index.html                  → interface (présentation)
-assets/js/app.js            → logique du frontend
-backend/
-├── api/                    → un fichier simple par entité
-│   ├── apiDomaine.php      → CRUD du Domaine
-│   └── apiOffre.php        → CRUD de l'Offre
-├── classes/                → modèles POO (1 classe = 1 fichier)
-│   ├── Domaine.php
-│   └── Offre.php
-├── dao/                    → accès aux données (fichiers JSON)
-│   ├── DomaineDAO.php
-│   └── OffreDAO.php
-├── services/               → logique métier
-│   ├── BaseService.php
-│   ├── DomaineService.php
-│   └── OffreService.php
-└── data/
-    ├── Domaines.json
-    └── Offres.json
+Projet/                     → application (tout le code exécutable)
+  ├── index.html            → interface (présentation)
+  ├── assets/js/app.js      → logique du frontend
+  └── backend/
+      ├── api/              → un fichier simple par entité
+      │   ├── apiDomaine.php  → CRUD du Domaine
+      │   └── apiOffre.php    → CRUD de l'Offre
+      ├── classes/          → modèles POO (1 classe = 1 fichier)
+      │   ├── Domaine.php
+      │   └── Offre.php
+      ├── dao/              → accès aux données (fichiers JSON)
+      │   ├── DomaineDAO.php
+      │   └── OffreDAO.php
+      ├── services/         → logique métier
+      │   ├── BaseService.php
+      │   ├── DomaineService.php
+      │   └── OffreService.php
+      └── data/
+          ├── Domaines.json
+          └── Offres.json
 docs/                       → sources Mermaid et diagrammes complets
 Presentation/               → support de soutenance (Marp, PDF, captures)
   ├── Presentation.md       → source des diapositives
@@ -85,7 +86,7 @@ PROMPT.md                   → prompt IA utilisé pour générer ce projet
 
 ## API — CRUD
 
-Un fichier simple par entité : `backend/api/apiDomaine.php` et `backend/api/apiOffre.php`.
+Un fichier simple par entité : `Projet/backend/api/apiDomaine.php` et `Projet/backend/api/apiOffre.php`.
 Chaque fichier vérifie la méthode HTTP (`GET`, `POST`, `PUT`, `DELETE`) et appelle la méthode du service correspondante.
 
 **Domaines :**
@@ -109,6 +110,7 @@ Chaque fichier vérifie la méthode HTTP (`GET`, `POST`, `PUT`, `DELETE`) et app
 ## Lancement
 
 ```bash
+cd Projet
 php -S localhost:8000
 ```
 
